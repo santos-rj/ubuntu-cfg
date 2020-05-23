@@ -58,4 +58,15 @@ sudo snap install code --classic
 echo 'installing PyCharm'
 sudo snap install pycharm-community --classic
 
+echo 'installing Sublime'
+wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | sudo apt-key add -
+sudo aptitude install apt-transport-https
+echo "deb https://download.sublimetext.com/ apt/stable/" | sudo tee /etc/apt/sources.list.d/sublime-text.list
+sudo aptitude update
+sudo aptitude install sublime-text
+
+echo 'installing Atom'
+wget -c https://atom.io/download/deb
+sudo dpkg -i atom-amd64.deb
+
 echo 'Finished! :D'
