@@ -69,4 +69,7 @@ echo 'installing Atom'
 wget -c https://atom.io/download/deb
 sudo dpkg -i atom-amd64.deb
 
+echo 'installing Flameshot'
+sudo aptitude install flameshot
+
 echo 'Finished! :D'
