@@ -72,4 +72,7 @@ sudo dpkg -i atom-amd64.deb
 echo 'installing Flameshot'
 sudo aptitude install flameshot
 
+echo 'installing Insomnia'
+sudo snap install insomnia
+
 echo 'Finished! :D'
