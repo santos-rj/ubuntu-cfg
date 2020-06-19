@@ -72,6 +72,10 @@ sudo dpkg -i atom-amd64.deb
 echo 'installing Flameshot'
 sudo aptitude install flameshot
 
+echo 'installing Node.js'
+curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
+sudo aptitude install -y nodejs
+
 echo 'installing Insomnia'
 sudo snap install insomnia
 
