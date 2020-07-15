@@ -79,4 +79,7 @@ sudo aptitude install -y nodejs
 echo 'installing Insomnia'
 sudo snap install insomnia
 
+echo 'installing Zsh'
+sudo aptitude install zsh
+
 echo 'Finished! :D'
