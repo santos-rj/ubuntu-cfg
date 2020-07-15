@@ -41,6 +41,11 @@ echo "deb [arch=amd64] https://brave-browser-apt-release.s3.brave.com/ stable ma
 sudo aptitude update
 sudo aptitude install brave-browser -y
 
+echo 'installing google chrome'
+wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -O google-chrome-stable_current_amd64.deb
+sudo dpkg -i google-chrome-stable_current_amd64.deb
+sudo aptitude install -f
+
 echo 'installing g++'
 sudo aptitude install g++ -y
 
