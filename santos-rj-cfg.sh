@@ -85,6 +85,9 @@ echo 'installing Insomnia'
 sudo snap install insomnia
 
 echo 'installing Zsh'
+sudo aptitude install zsh
+
+echo 'installing Oh My Zsh'
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
 echo 'Finished! :D'
