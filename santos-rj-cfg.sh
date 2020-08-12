@@ -30,10 +30,14 @@ else
 	echo "Okay, no problem. :) Let's move on!"
 fi
 
+echo 'installing xclip'
+sudo apt-get install xclip
+
 echo "Generating a SSH Key"
 ssh-keygen -t rsa -b 4096 -C $git_config_user_email
+eval "$(ssh-agent -s)"
 ssh-add ~/.ssh/id_rsa
-cat ~/.ssh/id_rsa.pub | xclip -selection clipboard
+xclip -sel clip < ~/.ssh/id_rsa.pub
 
 echo 'installing brave'
 curl -s https://brave-browser-apt-release.s3.brave.com/brave-core.asc | sudo apt-key --keyring /etc/apt/trusted.gpg.d/brave-browser-release.gpg add -
@@ -89,5 +93,7 @@ sudo aptitude install zsh
 
 echo 'installing Oh My Zsh'
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
+sudo aptitude update -y && sudo aptitude upgrade -y
 
 echo 'Finished! :D'
