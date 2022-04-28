@@ -2,17 +2,14 @@ echo 'Running santos-rj-cfg, wait for the setup to finish!'
 
 sudo apt update
 
-echo 'installing  aptitude' 
-sudo apt install aptitude
-
 echo 'installing  curl' 
-sudo aptitude install apt-transport-https curl -y
+sudo apt install apt-transport-https curl -y
 
 echo 'installing git' 
-sudo aptitude install git -y
+sudo apt install git -y
 
 echo "Qual usuario você usa no Git user.name"
-echo "For example, mine will be \"Erick Wendel\""
+echo "For example, mine will be \"Rafael Santos\""
 read git_config_user_name
 git config --global user.name "$git_config_user_name"
 clear 
@@ -42,21 +39,21 @@ xclip -sel clip < ~/.ssh/id_rsa.pub
 echo 'installing brave'
 curl -s https://brave-browser-apt-release.s3.brave.com/brave-core.asc | sudo apt-key --keyring /etc/apt/trusted.gpg.d/brave-browser-release.gpg add -
 echo "deb [arch=amd64] https://brave-browser-apt-release.s3.brave.com/ stable main" | sudo tee /etc/apt/sources.list.d/brave-browser-release.list
-sudo aptitude update
-sudo aptitude install brave-browser -y
+sudo apt update
+sudo apt install brave-browser -y
 
 echo 'installing google chrome'
 wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -O google-chrome-stable_current_amd64.deb
 sudo dpkg -i google-chrome-stable_current_amd64.deb
-sudo aptitude install -f
+sudo apt install -f
 
 echo 'installing g++'
-sudo aptitude install g++ -y
+sudo apt install g++ -y
 
 echo 'installing dbeaver'
 wget -c https://dbeaver.io/files/dbeaver-ce_latest_amd64.deb
 sudo dpkg -i dbeaver-ce_latest_amd64.deb
-sudo aptitude install -f
+sudo apt install -f
 
 echo 'installing spotify'
 sudo snap install spotify
@@ -67,33 +64,18 @@ sudo snap install code --classic
 echo 'installing PyCharm'
 sudo snap install pycharm-community --classic
 
-echo 'installing Sublime'
-wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | sudo apt-key add -
-sudo aptitude install apt-transport-https
-echo "deb https://download.sublimetext.com/ apt/stable/" | sudo tee /etc/apt/sources.list.d/sublime-text.list
-sudo aptitude update
-sudo aptitude install sublime-text
-
-echo 'installing Atom'
-wget -c https://atom.io/download/deb
-sudo dpkg -i atom-amd64.deb
-
 echo 'installing Flameshot'
-sudo aptitude install flameshot
-
-echo 'installing Node.js'
-curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
-sudo aptitude install -y nodejs
+sudo apt install flameshot
 
 echo 'installing Insomnia'
 sudo snap install insomnia
 
 echo 'installing Zsh'
-sudo aptitude install zsh
+sudo apt install zsh
 
 echo 'installing Oh My Zsh'
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
-sudo aptitude update -y && sudo aptitude upgrade -y
+sudo apt update -y && sudo apt upgrade -y
 
 echo 'Finished! :D'
