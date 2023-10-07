@@ -55,6 +55,9 @@ wget -c https://dbeaver.io/files/dbeaver-ce_latest_amd64.deb
 sudo dpkg -i dbeaver-ce_latest_amd64.deb
 sudo apt install -f
 
+echo 'installing snap'
+sudo apt install snapd -y
+
 echo 'installing spotify'
 sudo snap install spotify
 
