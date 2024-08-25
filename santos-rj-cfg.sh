@@ -79,6 +79,9 @@ sudo apt install zsh
 echo 'installing Oh My Zsh'
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
+echo 'installing terminator'
+sudo apt install terminator -y
+
 sudo apt update -y && sudo apt upgrade -y
 
 echo 'Finished! :D'
