@@ -1,87 +1,91 @@
-echo 'Running santos-rj-cfg, wait for the setup to finish!'
+#!/bin/bash
 
-sudo apt update
+echo "Running santos-rj-cfg, please wait for the setup to finish!"
 
-echo 'installing  curl' 
-sudo apt install apt-transport-https curl -y
+# Atualiza pacotes e instala dependências essenciais
+sudo apt update && sudo apt upgrade -y
 
-echo 'installing git' 
-sudo apt install git -y
+echo "Installing curl and apt-transport-https..."
+sudo apt install -y apt-transport-https curl
 
-echo "Qual usuario você usa no Git user.name"
-echo "For example, mine will be \"Rafael Santos\""
-read git_config_user_name
+# Instala o Git e configurações iniciais
+echo "Installing Git..."
+sudo apt install -y git
+
+echo "Enter your Git user.name (e.g., Rafael Santos):"
+read -r git_config_user_name
 git config --global user.name "$git_config_user_name"
-clear 
-
-echo "Qual email você usa no Git user.email"
-read git_config_user_email
-git config --global user.email $git_config_user_email
 clear
 
-echo "Can I set VIM as your default GIT editor for you? (y/n)"
-read git_core_editor_to_vim
-if echo "$git_core_editor_to_vim" | grep -iq "^y" ;then
+echo "Enter your Git user.email:"
+read -r git_config_user_email
+git config --global user.email "$git_config_user_email"
+clear
+
+# Configura o editor padrão do Git
+echo "Can I set VIM as your default GIT editor? (y/n)"
+read -r git_core_editor_to_vim
+if [[ "$git_core_editor_to_vim" =~ ^[Yy]$ ]]; then
 	git config --global core.editor vim
 else
-	echo "Okay, no problem. :) Let's move on!"
+	echo "No problem! Moving on."
 fi
 
-echo 'installing xclip'
-sudo apt-get install xclip
+# Gera a chave SSH
+echo "Installing xclip..."
+sudo apt-get install -y xclip
 
-echo "Generating a SSH Key"
-ssh-keygen -t rsa -b 4096 -C $git_config_user_email
+echo "Generating an SSH Key..."
+ssh-keygen -t rsa -b 4096 -C "$git_config_user_email"
 eval "$(ssh-agent -s)"
 ssh-add ~/.ssh/id_rsa
 xclip -sel clip < ~/.ssh/id_rsa.pub
+echo "Your SSH key has been copied to the clipboard."
 
-echo 'installing brave'
-curl -s https://brave-browser-apt-release.s3.brave.com/brave-core.asc | sudo apt-key --keyring /etc/apt/trusted.gpg.d/brave-browser-release.gpg add -
+# Função para instalar pacotes usando apt e snap
+install_apt_package() {
+	echo "Installing $1..."
+	sudo apt install -y "$1"
+}
+
+install_snap_package() {
+	echo "Installing $1..."
+	sudo snap install "$1" "$2"
+}
+
+# Instala navegadores Brave e Chrome
+echo "Installing Brave Browser..."
+curl -fsSL https://brave-browser-apt-release.s3.brave.com/brave-core.asc | sudo gpg --dearmor -o /etc/apt/trusted.gpg.d/brave-browser-release.gpg
 echo "deb [arch=amd64] https://brave-browser-apt-release.s3.brave.com/ stable main" | sudo tee /etc/apt/sources.list.d/brave-browser-release.list
-sudo apt update
-sudo apt install brave-browser -y
+sudo apt update && install_apt_package brave-browser
 
-echo 'installing google chrome'
+echo "Installing Google Chrome..."
 wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -O google-chrome-stable_current_amd64.deb
-sudo dpkg -i google-chrome-stable_current_amd64.deb
-sudo apt install -f
+sudo dpkg -i google-chrome-stable_current_amd64.deb || sudo apt install -f -y
+rm google-chrome-stable_current_amd64.deb
 
-echo 'installing g++'
-sudo apt install g++ -y
+# Instala outras ferramentas
+install_apt_package g++
+install_apt_package flameshot
+install_apt_package zsh
+install_apt_package terminator
 
-echo 'installing dbeaver'
+echo "Installing DBeaver..."
 wget -c https://dbeaver.io/files/dbeaver-ce_latest_amd64.deb
-sudo dpkg -i dbeaver-ce_latest_amd64.deb
-sudo apt install -f
+sudo dpkg -i dbeaver-ce_latest_amd64.deb || sudo apt install -f -y
+rm dbeaver-ce_latest_amd64.deb
 
-echo 'installing snap'
-sudo apt install snapd -y
+# Instala pacotes Snap
+install_snap_package spotify
+install_snap_package code --classic
+install_snap_package pycharm-community --classic
+install_snap_package insomnia
 
-echo 'installing spotify'
-sudo snap install spotify
-
-echo 'installing VSCode'
-sudo snap install code --classic
-
-echo 'installing PyCharm'
-sudo snap install pycharm-community --classic
-
-echo 'installing Flameshot'
-sudo apt install flameshot
-
-echo 'installing Insomnia'
-sudo snap install insomnia
-
-echo 'installing Zsh'
-sudo apt install zsh
-
-echo 'installing Oh My Zsh'
+# Instala Oh My Zsh
+echo "Installing Oh My Zsh..."
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
-echo 'installing terminator'
-sudo apt install terminator -y
-
+# Atualiza novamente para garantir tudo em dia
 sudo apt update -y && sudo apt upgrade -y
 
-echo 'Finished! :D'
+echo "Setup finished! :D"
