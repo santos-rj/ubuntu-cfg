@@ -34,9 +34,15 @@ To run the setup, follow these steps:
 
    **Note**: During setup, you’ll be asked for your Git configuration and if you'd like to set Vim as your default Git editor.
 
+## Git Configuration
+
+See [this file](./docs/git-config.md)
+
 ## Terminal Configuration
 
 After running the script, you can further configure your terminal by customizing Oh My Zsh. To set up a stylish terminal theme, follow the guide on [Rocketseat’s blog for configuring Oh My Zsh](https://blog.rocketseat.com.br/terminal-com-oh-my-zsh-spaceship-dracula-e-mais/), which provides step-by-step instructions for themes and plugins to enhance your terminal's look and usability.
+
+Can you see [this file](./docs/setup-oh-my-zsh.md) to our tutor
 
 ## Gnome Extensions
 
