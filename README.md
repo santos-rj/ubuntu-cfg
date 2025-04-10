@@ -12,18 +12,21 @@ To get started, you can download the script directly from [this link](https://gi
 To run the setup, follow these steps:
 
 1. **Clone the Repository**:
+
    ```bash
    git clone https://github.com/santos-rj/ubuntu-cfg.git
    cd ubuntu-cfg
    ```
 
 2. **Run the Script**:
+
    ```bash
    chmod +x santos-rj-cfg.sh
    ./santos-rj-cfg.sh
    ```
 
    This script will:
+
    - Update the system.
    - Install essential packages, including `curl`, `git`, `xclip`, and `zsh`.
    - Configure Git with your username and email.
@@ -55,9 +58,7 @@ To enhance your Ubuntu desktop experience, consider installing the following GNO
 5. **Desktop Icons NG (DING)**: Adds icons to the desktop. Fork of the original Desktop Icons extension, with several enhancements.
 6. **Sound Input & Output Device Chooser**: Shows a list of sound output and input devices (similar to gnome sound settings) in the status menu below the volume slider. Various active ports like HDMI , Speakers etc. of the same device are also displayed for selection. V20+ needs python as dependency. If you want to continue with the old method without Python, use options to switch off New Port identification. But it works with only English.
 7. **Simple System Monitor**: Show current CPU usage, memory usage and net speed on panel.
-For best experience, please use monospaced font.
-
-
+   For best experience, please use monospaced font.
 
 To install GNOME extensions:
 
