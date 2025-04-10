@@ -53,6 +53,11 @@ install_snap_package() {
 	sudo snap install "$1" "$2"
 }
 
+install_flatpak_package() {
+	echo "Installing $1..."
+	flatpak install -y flathub "$1"
+}
+
 # Instala navegadores Brave e Chrome
 echo "Installing Brave Browser..."
 curl -fsSL https://brave-browser-apt-release.s3.brave.com/brave-core.asc | sudo gpg --dearmor -o /etc/apt/trusted.gpg.d/brave-browser-release.gpg
@@ -84,6 +89,12 @@ install_snap_package insomnia
 # Instala Oh My Zsh
 echo "Installing Oh My Zsh..."
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
+# Instala o Flatpak e o Gear Lever
+echo "Installing Flatpak and configuring Flathub..."
+install_apt_package flatpak
+sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+install_flatpak_package it.mijorus.gearlever
 
 # Atualiza novamente para garantir tudo em dia
 sudo apt update -y && sudo apt upgrade -y
