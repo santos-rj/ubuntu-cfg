@@ -82,6 +82,46 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/too
 echo 'installing terminator'
 sudo apt install terminator -y
 
+echo 'install flathub'
+sudo apt install flatpak
+
+echo 'install nvm'
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
+
+echo 'install pritunl'
+sudo tee /etc/apt/sources.list.d/pritunl.list << EOF
+deb https://repo.pritunl.com/stable/apt noble main
+EOF
+
+sudo apt --assume-yes install gnupg
+gpg --keyserver hkp://keyserver.ubuntu.com --recv-keys 7568D9BB55FF9E5287D586017AE645C0CF8E292A
+gpg --armor --export 7568D9BB55FF9E5287D586017AE645C0CF8E292A | sudo tee /etc/apt/trusted.gpg.d/pritunl.asc
+sudo apt update
+sudo apt install pritunl-client-electron
+
+echo 'flatpak install gearlever'
+flatpak install flathub it.mijorus.gearlever
+
+echo 'download noSQLBooster'
+wget -c https://s3.nosqlbooster.com/download/releasesv10/nosqlbooster4mongo-10.0.5.AppImage
+
+echo 'install bitwarden'
+sudo snap install bitwarden
+
+echo 'download ApiDog'
+wget -c https://file-assets.apidog.com/download/Apidog-linux-latest.zip
+
+echo 'install Intellij'
+sudo snap install intellij-idea-community --classic
+
+echo 'install cursor'
+wget -c https://downloads.cursor.com/production/e50823e9ded15fddfd743c7122b4724130c25df8/linux/x64/Cursor-1.4.3-x86_64.AppImage
+
+echo 'install Claude Code'
+nvm install 18
+nvm use 18
+npm install -g @anthropic-ai/claude-code
+
 sudo apt update -y && sudo apt upgrade -y
 
 echo 'Finished! :D'
