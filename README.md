@@ -41,6 +41,10 @@ To run the setup, follow these steps:
 
 See [this file](./docs/git-config.md)
 
+## Reminder: Configure Multiple SSH Keys and GPG
+
+**Reminder:** Don't forget to configure multiple SSH keys for different services (GitHub, GitLab, etc.) and a GPG key to securely sign your commits.
+
 ## Terminal Configuration
 
 After running the script, you can further configure your terminal by customizing Oh My Zsh. To set up a stylish terminal theme, follow the guide on [Rocketseat’s blog for configuring Oh My Zsh](https://blog.rocketseat.com.br/terminal-com-oh-my-zsh-spaceship-dracula-e-mais/), which provides step-by-step instructions for themes and plugins to enhance your terminal's look and usability.
