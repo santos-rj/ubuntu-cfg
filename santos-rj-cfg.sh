@@ -8,6 +8,8 @@ sudo apt install apt-transport-https curl -y
 echo 'installing git' 
 sudo apt install git -y
 
+sudo apt install vim -y
+
 echo "Qual usuario você usa no Git user.name"
 echo "For example, mine will be \"Rafael Santos\""
 read git_config_user_name
@@ -28,7 +30,7 @@ else
 fi
 
 echo 'installing xclip'
-sudo apt-get install xclip
+sudo apt-get install xclip -y
 
 echo "Generating a SSH Key"
 ssh-keygen -t rsa -b 4096 -C $git_config_user_email
@@ -68,13 +70,13 @@ echo 'installing PyCharm'
 sudo snap install pycharm-community --classic
 
 echo 'installing Flameshot'
-sudo apt install flameshot
+sudo apt install flameshot -y
 
 echo 'installing Insomnia'
 sudo snap install insomnia
 
 echo 'installing Zsh'
-sudo apt install zsh
+sudo apt install zsh -y
 
 echo 'installing Oh My Zsh'
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
